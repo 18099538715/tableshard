@@ -35,14 +35,15 @@
       </property>
     </bean>
 
-     3、继承类TableShard，初始化的时候设置好分库的区间，分表的个数，分库采用id/region ，分表采用  id%shard
-        如果不需要分库或者分表，请忽略对应信息的赋值。实现before和after不需要进行处理，只需调用父类的
-        每一个表一个划分类，不支持多个共用一个，共有四种分库分表的策略
-	DbNumFixTableNumFix  db按区间分，表数量固定
-	DbNumFixTableRegion  db数量固定，表按区间分
-	DbRegionTableNumFix  db按区间分，表数量固定
-	DbRegionTableRegion  db按区间分，表按区间分
+     3、共有四种分库分表的策略，如果只需要分库或分表，则另外一种可以随意选，
+		根据不同的需求选择集成不同的类。如果不需要分库或者分表，请忽略对应信息的赋值。
+		区间分是除以传入的对应参数得到整数，个数固定分是对传入的参数取余
+		实现before和after不需要进行处理，只需调用父类的
 	
+		DbNumFixTableNumFix  db按区间分，表数量固定
+		DbNumFixTableRegion  db数量固定，表按区间分
+		DbRegionTableNumFix  db按区间分，表数量固定
+		DbRegionTableRegion  db按区间分，表按区间分
 
         @Component
 		@Aspect
