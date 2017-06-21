@@ -15,8 +15,8 @@ public abstract class AbstractTableDbShard {
 	private Logger log = Logger.getLogger(this.getClass());
 	private String dbPrefix;// 数据源前缀
 	private String tablePrefix;// 表名前缀
-	private Integer dbShardParam;// db分片区间
-	private Integer tableShardParam;// 数据表分片个数
+	private Integer dbShardParam;// db分片参数
+	private Integer tableShardParam;// 数据表分片参数
 
 	public String getDbPrefix() {
 		return dbPrefix;
