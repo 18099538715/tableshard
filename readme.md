@@ -40,7 +40,7 @@
 		区间分是除以传入的对应参数得到整数，个数固定分是对传入的参数取余
 		实现before和after不需要进行处理，只需调用父类的
 	
-		DbNumFixTableNumFix  db按区间分，表数量固定
+		DbNumFixTableNumFix  db数量固定，表数量固定
 		DbNumFixTableRegion  db数量固定，表按区间分
 		DbRegionTableNumFix  db按区间分，表数量固定
 		DbRegionTableRegion  db按区间分，表按区间分
