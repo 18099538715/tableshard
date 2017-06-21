@@ -36,7 +36,7 @@
     </bean>
 
      3、共有四种分库分表的策略，如果只需要分库或分表，则另外一种可以随意选，
-		根据不同的需求选择集成不同的类。如果不需要分库或者分表，请忽略对应信息的赋值。
+		根据不同的需求选择继承不同的类。如果不需要分库或者分表，请忽略对应信息的赋值。
 		区间分是除以传入的对应参数得到整数，个数固定分是对传入的参数取余
 		实现before和after不需要进行处理，只需调用父类的
 	
@@ -50,10 +50,10 @@
 		public class OldMessageShard extends TableShard {
 			@PostConstruct
 			public void init() {
-				super.setDbPrefix("ds");
-				super.setDbShardParam(5000);
-				super.setTableShardParam(3);
-				super.setTablePrefix("account_message_");
+				super.setDbPrefix("ds");//不分库不需要
+				super.setDbShardParam(5000);//不分库不需要
+				super.setTableShardParam(3);//不分表不需要
+				super.setTablePrefix("account_message_");//不分表不需要
 			}
 		
 			@Before(value = "execution(* com.bbk.im.logic.shard.oldmsg.dao.MessageDAO.*(..))")
