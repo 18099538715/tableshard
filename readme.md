@@ -81,4 +81,12 @@
 				return msgId;
 			}
      }
+     
+     5、在对应的数据库操作.xml里将对应的表名称均修改为 table_name，例如
+     	<select id="getMaxSyncKeyByDialogId" resultType="java.lang.Long">
+		select
+		max(syncKey) from
+		table_name where dialogId =#{0} ;
+	</select>
+     
           
