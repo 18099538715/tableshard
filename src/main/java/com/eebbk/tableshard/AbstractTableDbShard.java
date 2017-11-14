@@ -59,8 +59,9 @@ public abstract class AbstractTableDbShard {
 	 */
 
 	public void beforeAdvice(JoinPoint jionpoint) {
+		Object[] args = null;
 		try {
-			Object[] args = jionpoint.getArgs();
+			args = jionpoint.getArgs();
 			if (args[0] instanceof Long || args[0] instanceof Integer || args[0] instanceof String) {
 				setParam(args[0]);
 			} else {
@@ -69,6 +70,18 @@ public abstract class AbstractTableDbShard {
 			}
 		} catch (Exception e) {
 			log.error("分库分表出错", e);
+			// 如果传入的分表参数为null，把这个分配到默认的第一个库，第一个表里去
+			if (args == null || args[0] == null) {
+				if (getDbPrefix() == null || getDbPrefix() == "") {
+					DatabaseContextHolder.setTableName(getTablePrefix());
+					return;
+				}
+				if (getTablePrefix() == null || getTablePrefix() == "") {// 如果不分表
+					DatabaseContextHolder.setDbName(getDbPrefix());
+					return;
+				}
+				DatabaseContextHolder.setShardParam(getTablePrefix(), getDbPrefix());
+			}
 		}
 	}
 
