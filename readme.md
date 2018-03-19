@@ -6,6 +6,7 @@
      1、打包得到的jar 包引入到项目
      
      2、引入自定义的mybatis拦截器，配置动态数据源，如果不需要分库，则使用正常数据源即可。
+     
      ``` 
      <!-- 配置SqlSessionFactory -->
 		<bean id="sqlMessageSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -47,6 +48,7 @@
 		DbRegionTableNumFix  db按区间分，表数量固定
 		DbRegionTableRegion  db按区间分，表按区间分
 
+
                 ``` 
 		@Component
 		@Aspect
@@ -79,6 +81,7 @@
  
 
      4、实体类实现ShardId接口，返回分库分表的字段
+     
      ```
      public class Message implements Serializable, ShardId {
 		 	@Override
@@ -89,6 +92,7 @@
      ``` 
      
      5、在对应的数据库操作.xml里将对应的表名称均修改为 table_name，例如
+     
      ``` 
      <select id="getMaxSyncKeyByDialogId" resultType="java.lang.Long">
 		select
