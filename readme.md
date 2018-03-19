@@ -48,8 +48,6 @@
 		DbRegionTableNumFix  db按区间分，表数量固定
 		DbRegionTableRegion  db按区间分，表按区间分
 
-
-                ```
 		@Component
 		@Aspect
 		public class OldMessageShard extends TableShard {
@@ -77,19 +75,16 @@
 				return super.hashString(s);
 			}
 		}
-		``` 
  
 
      4、实体类实现ShardId接口，返回分库分表的字段
-     
-     ```
+    
      public class Message implements Serializable, ShardId {
 		 	@Override
 			public Object getShardId() {
 				return msgId;
 			}
 			
-     ``` 
      
      5、在对应的数据库操作.xml里将对应的表名称均修改为 table_name，例如
      
